@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
     <div id="root"></div>
-</body>
-<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<script>
+  </body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // 코드를 어려운 방식으로 변환해줌
     const root = document.getElementById("root");
+    const Title = (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello I'm a title
+      </h3>
+    );
+    /* 잘 사용하지 않는 어려운 방식
     const h3 = React.createElement(
         "h3",
         {
             id:"title",
-            onMouseEnter: () => console.log("mouse enter"), 
+            onMouseEnter: () => console.log("mouse enter"),
         },
-        "Hello I'm a span"
+        "Hello I'm a title"
     );
-    const btn = React.createElement(
-        "button",
-        {
-            onClick: () => console.log('im clicked'), // button이 클릭될 때마다 호출될 function("im clicked")
-            style: {
-                backgroundColor:"tomato",
-            }
-        }, 
-        "Click me"
+    */
+    const Button = (
+      <button
+        style={{
+          backgroundColor: "tomato",
+        }}
+        onClick={() => console.log("im clicked")}
+      >
+        Click me
+      </button>
     );
-const container = React.createElement("div", null, [h3, btn]);    // span과 btn을 모두 render하고 싶을 때
-ReactDOM.createRoot(root).render(container); // render : html로 보냄, show it to user
-</script>
+    const container = React.createElement("div", null, [Title, Button]); // span과 btn을 모두 render하고 싶을 때
+    ReactDOM.createRoot(root).render(container); // render : html로 보냄, show it to user
+  </script>
 </html>
