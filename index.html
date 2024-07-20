@@ -8,22 +8,18 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function countUp() {
-      counter = counter + 1;
-      render();
-    }
-    function render() {
-      ReactDOM.createRoot(root).render(<Container />); // 함수 다시 호출
-    }
-    let counter = 0;
-    function Container() {
+    function App() {
+      const [counter, setCounter] = React.useState(0); //
+      const onClick = () => {
+        setCounter(counter + 1); // 부여된 값으로 업데이트하고 리렌더링을 일으킴
+      };
       return (
         <div>
           <h3>Total clicks: {counter}</h3>
-          <button onClick={countUp}>Click me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     }
-    render();
+    ReactDOM.createRoot(root).render(<App />);
   </script>
 </html>
