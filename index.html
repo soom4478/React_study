@@ -8,30 +8,22 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function Title() {
+    function countUp() {
+      counter = counter + 1;
+      render();
+    }
+    function render() {
+      ReactDOM.createRoot(root).render(<Container />); // 함수 다시 호출
+    }
+    let counter = 0;
+    function Container() {
       return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello I'm a title
-        </h3>
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={countUp}>Click me</button>
+        </div>
       );
     }
-    // Arrow Function, 위 방식과 동일
-    const Button = () => (
-      <button
-        style={{
-          backgroundColor: "tomato",
-        }}
-        onClick={() => console.log("im clicked")}
-      >
-        Click me
-      </button>
-    );
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div> // 코드를 복사붙여넣기 하는 것과 동일 *컴포넌트 첫 글자는 반드시 대문자*
-    ); // Title, Button을 함수로 만들어 줘야함
-    ReactDOM.createRoot(root).render(<Container />);
+    render();
   </script>
 </html>
